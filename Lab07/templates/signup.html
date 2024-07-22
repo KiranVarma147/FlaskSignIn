@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Sign Up</title>
+    <style>
+      .form-alignment {
+        padding: 25px;
+        margin-left: 30%;
+        max-width: 40%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 2%;
+        background-color: #E9ECEF;
+      }
+      a {
+        font-weight: bold;
+      }
+      body {
+            background-image: url('static/bgup.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            margin: 0;
+            max-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-3">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="container mt-3">
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+    </div>
+    <div class="form-alignment">
+      <h2 style="text-align: center; margin-top: 5%;">Register</h2>
+      <span style="font-weight: lighter; text-align: center; display: block;">Create your account, it's free and only takes a minute.</span>
+      <br>
+      <form method="POST" action="{{ url_for('signup') }}">
+        <input type="text" name="first_name" style="border-radius: 25px;" class="form-control" id="first_name" placeholder="First Name" required><br>
+
+        <input type="text" name="last_name" style="border-radius: 25px;" class="form-control" id="last_name" placeholder="Last Name" required><br>
+
+        <input type="email" name="email" style="border-radius: 25px;" class="form-control" id="email" placeholder="Email" required><br>
+
+        <input type="password" name="password" style="border-radius: 25px;" class="form-control" id="password" placeholder="Password" required><br>
+
+        <input type="password" name="confirm_password" style="border-radius: 25px;" class="form-control" id="confirm_password" placeholder="Confirm Password" required><br>
+        
+        <button type="submit" class="btn btn-primary" style="display: block; margin: 0 auto;">Register</button>
+        <br><br><br>
+
+        <p style="text-align: center;">Already have an account?<a href="{{ url_for('signin') }}"> Sign in</a></p>
+      </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
